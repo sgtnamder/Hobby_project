@@ -1,5 +1,11 @@
 package com.qa.hobby.repo;
 
-public interface DriverRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.qa.hobby.domain.Driver;
+
+@Repository
+public interface DriverRepo extends JpaRepository<Driver, Integer> {
 
 }

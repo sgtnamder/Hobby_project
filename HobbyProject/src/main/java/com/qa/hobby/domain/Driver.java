@@ -8,30 +8,29 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Driver {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String teamName;
-	
+
 	private Integer points;
-	
+
 	private Integer driverNum;
-	
+
 	private String time;
-	
+
 	private Integer position;
-	
+
 	@ManyToOne
 	private Race race;
-	
-	public  Driver() {
-		
+
+	public Driver() {
+
 	}
-	
 
 	public Driver(Integer id, String name, String teamName, Integer points, Integer driverNum, String time,
 			Integer position) {
@@ -45,7 +44,6 @@ public class Driver {
 		this.position = position;
 	}
 
-
 	public Driver(String name, String teamName, Integer points, Integer driverNum, String time, Integer position) {
 		super();
 		this.name = name;
@@ -56,86 +54,69 @@ public class Driver {
 		this.position = position;
 	}
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getName() {
 		return name;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
 	public String getTeamName() {
 		return teamName;
 	}
-
 
 	public void setTeamName(String teamName) {
 		this.teamName = teamName;
 	}
 
-
 	public Integer getPoints() {
 		return points;
 	}
-
 
 	public void setPoints(Integer points) {
 		this.points = points;
 	}
 
-
 	public Integer getDriverNum() {
 		return driverNum;
 	}
-
 
 	public void setDriverNum(Integer driverNum) {
 		this.driverNum = driverNum;
 	}
 
-
 	public String getTime() {
 		return time;
 	}
-
 
 	public void setTime(String time) {
 		this.time = time;
 	}
 
-
 	public Integer getPosition() {
 		return position;
 	}
-
 
 	public void setPosition(Integer position) {
 		this.position = position;
 	}
 
-
 	public Race getRace() {
 		return race;
 	}
 
-
 	public void setRace(Race race) {
 		this.race = race;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -151,7 +132,6 @@ public class Driver {
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -204,6 +184,5 @@ public class Driver {
 			return false;
 		return true;
 	}
-	
-	
+
 }

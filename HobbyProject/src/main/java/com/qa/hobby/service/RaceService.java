@@ -3,6 +3,8 @@ package com.qa.hobby.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.hobby.domain.Race;
@@ -31,5 +33,13 @@ public class RaceService {
 	public List<RaceDTO> getAllRaces(){
 		return this.repo.findAll().stream().map(race -> this.mapper.mapTo(race)).collect(Collectors.toList());
 	}
-
+	public RaceDTO updateRace(Integer id, Race race) {
+		Race current = this.repo.findById(id).orElseThrow(() ->new EntityNotFoundException());
+			current.setName(race.getName());
+			current.setDate(race.getDate());
+			current.setTime(race.getTime());
+		Race updated = this.repo.save(current);
+		return this.mapper.mapTo(updated);	
+	}
+	
 }

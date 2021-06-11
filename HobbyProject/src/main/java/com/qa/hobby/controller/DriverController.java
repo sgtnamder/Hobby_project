@@ -34,9 +34,13 @@ public class DriverController {
 		return this.service.getAllDrivers();
 	}
 
-	@RequestMapping("/update")
+	@RequestMapping("/update/{id}")
 	public DriverDTO updateDriver(@RequestBody Driver driver, @PathVariable Integer id) {
 		return this.service.updateDriver(id, driver);
+	}
+	@RequestMapping("/delete/{id}")
+	public Boolean deleteDriver(@PathVariable Integer id) {
+		return this.service.deleteDriver(id);
 	}
 
 }

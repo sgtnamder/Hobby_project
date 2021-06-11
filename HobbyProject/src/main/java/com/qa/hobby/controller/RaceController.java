@@ -38,5 +38,8 @@ public class RaceController {
 	public RaceDTO updateRace(@RequestBody Race race, @PathVariable Integer id) {
 		return this.service.updateRace(id, race);
 	}
-	
+	@RequestMapping("/delete/{id}")
+	public Boolean deleteRace(@PathVariable Integer id) {
+		return this.service.deleteRace(id);
+	}
 }

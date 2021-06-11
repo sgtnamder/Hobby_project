@@ -28,4 +28,9 @@ public class DriverService {
 		return this.mapper.mapTo(driver);
 	}
 
+	public List<DriverDTO> getAllDrivers() {
+		return this.repo.findAll().stream().map(driver -> this.mapper.mapTo(driver)).collect(Collectors.toList());
+	}
+
+
 }

@@ -41,5 +41,9 @@ public class RaceService {
 		Race updated = this.repo.save(current);
 		return this.mapper.mapTo(updated);	
 	}
+	public boolean deleteRace(Integer id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
 	
 }

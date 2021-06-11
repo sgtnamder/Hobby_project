@@ -1,5 +1,7 @@
 package com.qa.hobby.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +26,10 @@ public class RaceController {
 	public RaceDTO addRace(@RequestBody Race race) {
 		return this.service.addRace(race);
 	}
-
+	
+	@RequestMapping("/")
+	public List<RaceDTO> getAllRaces(){
+		return this.service.getAllRaces();
+	}
+	
 }

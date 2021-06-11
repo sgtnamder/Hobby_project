@@ -3,6 +3,8 @@ package com.qa.hobby.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.hobby.domain.Driver;
@@ -33,7 +35,7 @@ public class DriverService {
 	}
 
 	public DriverDTO updateDriver(Integer id, Driver driver) {
-		Driver current = this.repo.findById(id);
+		Driver current = this.repo.findById(id).orElseThrow(() ->new EntityNotFoundException());
 			current.setDriverNum(driver.getDriverNum());
 			current.setId(driver.getId());
 			current.setName(driver.getName());

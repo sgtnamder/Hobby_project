@@ -46,7 +46,7 @@ public class DriverService {
 		Driver updated = this.repo.save(current);
 		return this.mapper.mapTo(updated);	
 	}
-	public boolean deleteDriver(Integer id) {
+	public Boolean deleteDriver(Integer id) {
 		this.repo.deleteById(id);
 		return !this.repo.existsById(id);
 	}

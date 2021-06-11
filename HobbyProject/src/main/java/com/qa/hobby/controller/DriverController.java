@@ -1,5 +1,7 @@
 package com.qa.hobby.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +27,11 @@ public class DriverController {
 	public DriverDTO addDriver(@RequestBody Driver driver) {
 		return this.service.addDriver(driver);
 	}
+	
+	@RequestMapping("/")
+	public List<DriverDTO> getAllDrivers() {
+		return this.service.getAllDrivers();
+	}
+	
 	
 }

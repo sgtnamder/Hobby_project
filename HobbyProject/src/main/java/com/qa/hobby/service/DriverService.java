@@ -17,7 +17,7 @@ public class DriverService {
 
 	private DriverRepo repo;
 
-	public DriverService() {
+	public DriverService(DriverMapper mapper,DriverRepo repo) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
@@ -32,5 +32,19 @@ public class DriverService {
 		return this.repo.findAll().stream().map(driver -> this.mapper.mapTo(driver)).collect(Collectors.toList());
 	}
 
+	public DriverDTO updateDriver(Integer id, Driver driver) {
+		Driver current = this.repo.findById(id);
+			current.setDriverNum(driver.getDriverNum());
+			current.setId(driver.getId());
+			current.setName(driver.getName());
+			current.setPoints(driver.getPoints());
+			current.setPosition(driver.getPosition());
+			current.setTeamName(driver.getTeamName());
+			current.setTime(driver.getTime());
+		Driver updated = this.repo.save(current);
+		return this.mapper.mapTo(updated);	
+	}
+	
+	
 
 }

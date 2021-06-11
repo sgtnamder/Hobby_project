@@ -1,5 +1,8 @@
 package com.qa.hobby.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.hobby.domain.Race;
@@ -25,5 +28,8 @@ public class RaceService {
 		return this.mapper.mapTo(race);
 	}
 	
-	
+	public List<RaceDTO> getAllRaces(){
+		return this.repo.findAll().stream().map(race -> this.mapper.mapTo(race)).collect(Collectors.toList());
+	}
+
 }

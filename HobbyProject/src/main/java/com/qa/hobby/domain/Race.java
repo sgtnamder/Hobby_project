@@ -10,17 +10,53 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Race {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String date;
-	
+
 	private String time;
+
+	public Race() {
+
+	}
+
+	public Race(Integer id, String name, String date, String time, List<Driver> drivers) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.time = time;
+		this.drivers = drivers;
+	}
+
+	public Race(String name, String date, String time, List<Driver> drivers) {
+		super();
+		this.name = name;
+		this.date = date;
+		this.time = time;
+		this.drivers = drivers;
+	}
 	
+	
+
+	public Race(String name, String date, String time) {
+		super();
+		this.name = name;
+		this.date = date;
+		this.time = time;
+	}
+
+	@Override
+	public String toString() {
+		return "Race [id=" + id + ", name=" + name + ", date=" + date + ", time=" + time + ", drivers=" + drivers + "]";
+	}
+
+
 	@OneToMany(mappedBy = "race")
 	private List<Driver> drivers;
 
@@ -112,11 +148,5 @@ public class Race {
 			return false;
 		return true;
 	}
-	
+
 }
-	
-	
-	
-	
-	
-	

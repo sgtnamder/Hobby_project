@@ -3,6 +3,8 @@ package com.qa.hobby.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.qa.hobby.domain.Driver;
 import com.qa.hobby.domain.Race;
 import com.qa.hobby.dto.DriverDTO;
@@ -16,7 +18,7 @@ public class RaceMapper {
 		super();
 		this.driverMapper = driverMapper;
 	}
-	
+	@Autowired
 	public RaceDTO mapTo(Race race) {
 		RaceDTO dto = new RaceDTO();
 		dto.setId(race.getId());

@@ -53,6 +53,7 @@ public class Driver {
 		this.time = time;
 		this.position = position;
 	}
+	
 
 	public Integer getId() {
 		return id;

@@ -45,7 +45,7 @@ public class DriverServiceUnitTest {
 		//when
 		Mockito.when(this.repo.save(driver)).thenReturn(driver);
 		//when
-		assertThat(this.service.getAllDrivers()).isEqualTo(driver);
+		assertThat(this.service.getDrivers()).isEqualTo(driver);
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
 	}

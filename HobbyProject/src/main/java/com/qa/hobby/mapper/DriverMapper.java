@@ -6,11 +6,12 @@ import com.qa.hobby.domain.Driver;
 import com.qa.hobby.dto.DriverDTO;
 
 public class DriverMapper {
-	DriverMapper(){
-		
+	
+	
+	public DriverMapper(){
 	}
 	
-	@Autowired
+	
 	public DriverDTO mapTo(Driver driver) {
 		DriverDTO dto = new DriverDTO();
 		

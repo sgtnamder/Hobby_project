@@ -18,7 +18,7 @@ public class RaceMapper {
 		super();
 		this.driverMapper = driverMapper;
 	}
-	@Autowired
+	
 	public RaceDTO mapTo(Race race) {
 		RaceDTO dto = new RaceDTO();
 		dto.setId(race.getId());

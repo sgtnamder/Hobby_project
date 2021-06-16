@@ -1,5 +1,6 @@
 package com.qa.hobby.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,13 +21,21 @@ public class Race {
 	private String date;
 
 	private String time;
+	
+	@OneToMany(mappedBy = "race")
+	private List<Driver> drivers;
 
 	public Race() {
-
+		super();
+		this.id = 0;
+		this.name = "empty";
+		this.date = "empty";
+		this.time = "empty";
+		this.drivers = new ArrayList<>();
 	}
 
 	public Race(Integer id, String name, String date, String time, List<Driver> drivers) {
-		super();
+		this();
 		this.id = id;
 		this.name = name;
 		this.date = date;
@@ -35,7 +44,7 @@ public class Race {
 	}
 
 	public Race(String name, String date, String time, List<Driver> drivers) {
-		super();
+		this();
 		this.name = name;
 		this.date = date;
 		this.time = time;
@@ -45,7 +54,7 @@ public class Race {
 	
 
 	public Race(String name, String date, String time) {
-		super();
+		this();
 		this.name = name;
 		this.date = date;
 		this.time = time;
@@ -57,8 +66,7 @@ public class Race {
 	}
 
 
-	@OneToMany(mappedBy = "race")
-	private List<Driver> drivers;
+	
 
 	public Integer getId() {
 		return id;

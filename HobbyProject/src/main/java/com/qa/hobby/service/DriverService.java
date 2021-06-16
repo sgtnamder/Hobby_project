@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.hobby.domain.Driver;
@@ -14,7 +15,8 @@ import com.qa.hobby.repo.DriverRepo;
 
 @Service
 public class DriverService {
-
+	
+	@Autowired
 	private DriverMapper mapper;
 
 	private DriverRepo repo;
@@ -30,7 +32,7 @@ public class DriverService {
 		return this.mapper.mapTo(driver);
 	}
 
-	public List<DriverDTO> getAllDrivers() {
+	public List<DriverDTO> getDrivers() {
 		return this.repo.findAll().stream().map(driver -> this.mapper.mapTo(driver)).collect(Collectors.toList());
 	}
 

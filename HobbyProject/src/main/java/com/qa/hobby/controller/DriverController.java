@@ -13,7 +13,7 @@ import com.qa.hobby.dto.DriverDTO;
 import com.qa.hobby.service.DriverService;
 
 @RestController
-@RequestMapping("/drivers")
+@RequestMapping("/driver")
 public class DriverController {
 
 	private DriverService service;
@@ -31,7 +31,7 @@ public class DriverController {
 
 	@RequestMapping("/")
 	public List<DriverDTO> getAllDrivers() {
-		return this.service.getAllDrivers();
+		return this.service.getDrivers();
 	}
 
 	@RequestMapping("/update/{id}")

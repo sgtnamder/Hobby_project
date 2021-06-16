@@ -5,7 +5,7 @@ const output = document.getElementById("output");
 const getRace = async () => {
     const res = await axios.get("/race/");
     output.innerHTML = "";
-    res.data.forEach(car => renderRace(car));
+    res.data.forEach(race => renderRace(race));
 }
 
 const renderRace = ({ id, Name, Date, Time }) => {
@@ -46,22 +46,6 @@ const renderRace = ({ id, Name, Date, Time }) => {
         deleteRace(id);
     });
     cardFooter.appendChild(deleteButton);
-
-    const updateButton = document.createElement("a");
-    updateButton.innerText = "update";
-    updateButton.className = "card-link";
-    updateButton.
-        updateButton.addEventListener("click"  {
-        });
-    cardFooter.appendChild(updateButton);
-
-    const addButton = document.createElement("a");
-    addButton.innerText = "Add Driver";
-    addButton.className = "card-link";
-    addButton.addEventListener("click", function () {
-        deleteRace(id);
-    });
-    cardFooter.appendChild(addButton);
 
     output.appendChild(column);
 }

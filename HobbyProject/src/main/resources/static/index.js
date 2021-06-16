@@ -2,11 +2,16 @@
 
 const output = document.getElementById("output");
 
-const getRace = async () => {
-    const res = await axios.get("/race/");
-    output.innerHTML = "";
-    res.data.forEach(race => renderRace(race));
-}
+fetch(`http://localhost:8080/race/`)
+    .then((response) => {
+        if (response.status !== 200) {
+            console.error(`status: ${reponse.status}`);
+            return;
+        }
+        response.json()
+            .then(data.forEach(race => renderRace(race)));
+    }).catch((err) => console.error(`${err}`));
+
 
 const renderRace = ({ id, Name, Date, Time }) => {
     const column = document.createElement("div");
@@ -72,21 +77,22 @@ document.getElementById("createForm").addEventListener("submit", function (event
 });
 document.getElementById("createForm").addEventListener("submit", function (event) {
     event.preventDefault();
-
-    const data = {
-        Name: this.Name.value,
-        Date: this.Date.value,
-        Time: this.Time.value
-    }
-
-    axios.post("/race/create", data)
-        .then(res => {
-            getRace();
-            this.reset();
-            this.Name.focus();
-        }).catch(err => console.log(err));
-
-    console.log(this);
+    fetch("http://localhost:8080/race/create", {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(
+            {
+                Name: this.Name.value,
+                Date: this.Date.value,
+                Time: this.Time.value
+            }
+        )
+    })
+        .then(res => res.json())
+        .then((data) => console.log(`Request succeeded with JSON response ${data}`))
+        .catch((error) => console.log(`Request failed ${error}`))
 });
 
 const deleteRace = async (id) => {
@@ -94,12 +100,12 @@ const deleteRace = async (id) => {
     getCars();
 };
 
-const updateRace = async (id) => {
-
-    const data = {
-        Name: this.Name.value,
-        Date: this.Da.value,
-        Time: this.Time.value
-    }
-    const
-}
+const deleteRace = async (id) => {
+    fetch("someURL/" + id, {
+        method: 'delete',
+    })
+        .then((data) => {
+            console.log(`Request succeeded with JSON response ${data}`);
+        })
+        .catch((error) => console.log(`Request failed ${error}`))
+};

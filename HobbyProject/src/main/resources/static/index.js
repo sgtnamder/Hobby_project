@@ -52,9 +52,10 @@ document.getElementById("createRaceForm").addEventListener("submit", function (e
     event.preventDefault();
 
     let data = {
-        Name: this.Name.value,
-        Date: this.Date.value,
-        Time: this.Time.value
+        Name: getElementById("Name").value,
+        Date: getElementById("Date").value,
+        Time: getElementById("time").value
+
     }
 
     fetch("http://localhost:8080/race/add", {
@@ -62,17 +63,16 @@ document.getElementById("createRaceForm").addEventListener("submit", function (e
         headers: {
             "Content-type": "application/json"
         },
-        body: JSON.stringify(data)          
-        )
-})
-    .then(res => {
-        getRaces();
-        res.json();
-
+        body: JSON.stringify(data)
     })
+        .then(res => {
+            getRaces();
+            res.json();
 
-    .then((data) => console.log(`Request succeeded with JSON response ${data}`))
-    .catch((error) => console.log(`Request failed ${error}`))
+        })
+
+        .then((data) => console.log(`Request succeeded with JSON response ${data}`))
+        .catch((error) => console.log(`Request failed ${error}`))
 });
 
 const deleteRace = async (id) => {

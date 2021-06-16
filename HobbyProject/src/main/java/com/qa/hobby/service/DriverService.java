@@ -39,14 +39,14 @@ public class DriverService {
 	public DriverDTO updateDriver(Integer id, Driver driver) {
 		Driver current = this.repo.findById(id).orElseThrow(() ->new EntityNotFoundException());
 			current.setDriverNum(driver.getDriverNum());
-			current.setId(driver.getId());
+			current.setId(id);
 			current.setName(driver.getName());
 			current.setPoints(driver.getPoints());
 			current.setPosition(driver.getPosition());
 			current.setTeamName(driver.getTeamName());
 			current.setTime(driver.getTime());
 		Driver updated = this.repo.save(current);
-		return this.mapper.mapTo(updated);	
+		return this.mapper.mapTo(updated);
 	}
 	public Boolean deleteDriver(Integer id) {
 		this.repo.deleteById(id);

@@ -35,7 +35,7 @@ public class DriverController {
 	}
 
 	@RequestMapping("/update/{id}")
-	public DriverDTO updateDriver(@RequestBody Driver driver, @PathVariable Integer id) {
+	public DriverDTO updateDriver(@RequestBody Driver driver, @PathVariable("id") Integer id ){
 		return this.service.updateDriver(id, driver);
 	}
 	@RequestMapping("/delete/{id}")

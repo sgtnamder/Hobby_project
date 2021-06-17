@@ -1,7 +1,5 @@
 package com.qa.hobby.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.qa.hobby.domain.Driver;
 import com.qa.hobby.dto.DriverDTO;
 

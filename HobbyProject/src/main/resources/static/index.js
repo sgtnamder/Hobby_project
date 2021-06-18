@@ -1,20 +1,11 @@
 'use strict';
 
 const output = document.getElementById("output");
+function wait() {
+    setTimeout(location.reload.bind(location), 250);
+}
 
-// const getRaces = function () {
-//     fetch(`http://localhost:8080/race/`)
-//         .then((response) => {
-//             if (response.status !== 200) {
-//                 console.error(`status: ${reponse.status}`);
-//                 return;
-//             }
-//             response.json()
-//                 .then(data => console.info(data))
 
-//         }).catch((err) => console.error(`${err}`));
-
-// }
 async function getRaces() {
     const response = await fetch(`http://localhost:8080/race/`);
     const get = await response.json();
@@ -31,14 +22,32 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
     card.className = "card";
     column.appendChild(card);
 
+    let cardHeader = document.createElement("div");
+    cardHeader.className = "card-header";
+    cardHeader.innerText = `Name: ${name}, Date: ${date}, Time: ${time} `;
+    card.appendChild(cardHeader);
+
     let cardBody = document.createElement("div");
     cardBody.className = "card-body";
     card.appendChild(cardBody);
 
-    let raceText = document.createElement("p");
-    raceText.className = "card-text";
-    raceText.innerText = `Name: ${name}, Date: ${date}, Time: ${time} `;
-    cardBody.appendChild(raceText);
+    let listGroup = document.createElement("div");
+    listGroup.className = "list-group";
+    cardBody.appendChild(listGroup);
+
+
+    let renderDriver = ({ id, name, teamName, points, driverNum, time, position, }) => {
+        let driverList = document.createElement("button");
+        driverList.type = "button";
+        driverList.innerText = `Name: ${name}, Team Name: ${teamName}, Points: ${points}, Driver Num: ${driverNum}, Time: ${time}, Position ${position}`;
+        driverList.className = "list-group-item list-group-item-action"
+        driverList.addEventListener("click", function () {
+            deletedriver(id);
+        })
+        listGroup.appendChild(driverList);
+
+    }
+    drivers.forEach(drivers => renderDriver(drivers));
 
     let cardFooter = document.createElement("div");
     cardFooter.className = "card-footer";
@@ -46,16 +55,15 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
 
     let deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
-    deleteButton.className = "card-link";
+    deleteButton.className = "card-button";
     deleteButton.addEventListener("click", function () {
         deleteRace(id);
     });
     cardFooter.appendChild(deleteButton);
 
     let updateButton = document.createElement("button");
-    updateButton.innerText = "update";
-    updateButton.className = "card-link";
-    updateButton.href = "#";
+    updateButton.innerText = "update race";
+    updateButton.className = "card-button";
     updateButton.setAttribute('data-bs-toggle', 'modal');
     updateButton.setAttribute('data-bs-target', '#updateModal');
     updateButton.addEventListener("click", function () {
@@ -76,6 +84,7 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
                 body: JSON.stringify(data)
             })
                 .then(console.log(JSON.stringify(data)))
+                .then(wait())
                 .then(res => { res.json() })
                 .then((data) => console.log(`Request succeeded with JSON response ${data}`))
                 .catch((error) => console.log(`Request failed ${error}`))
@@ -84,10 +93,14 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
     cardFooter.appendChild(updateButton);
 
     let addButton = document.createElement("button");
-    addButton.innerText = "Delete";
-    addButton.className = "card-link";
+    addButton.innerText = "Add Driver";
+    addButton.className = "card-button";
+    addButton.setAttribute('data-bs-toggle', 'modal');
+    addButton.setAttribute('data-bs-target', '#addModal');
+    addButton.addEventListener("click", function () {
+        addDriver(id)
+    });
     cardFooter.appendChild(addButton);
-
 
     output.appendChild(column);
 }
@@ -112,10 +125,40 @@ document.getElementById("createRaceForm").addEventListener("submit", function (e
     })
         .then(console.log(JSON.stringify(data)))
         .then(res => { res.json() })
-        .then(getRaces())
+        .then(wait())
         .then((data) => console.log(`Request succeeded with JSON response ${data}`))
         .catch((error) => console.log(`Request failed ${error}`))
 });
+const addDriver = async (id) => {
+    document.getElementById("createDriverForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let data = {
+            name: document.getElementById("AName").value,
+            teamName: document.getElementById("TeamName").value,
+            points: document.getElementById("Points").value,
+            driverNum: document.getElementById("DriverNum").value,
+            time: document.getElementById("DTime").value,
+            position: document.getElementById("Position").value,
+            race: {
+                id: id
+            }
+        }
+
+        fetch("http://localhost:8080/driver/add", {
+            method: 'post',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(console.log(JSON.stringify(data)))
+            .then(res => { res.json() })
+            .then(wait())
+            .then((data) => console.log(`Request succeeded with JSON response ${data}`))
+            .catch((error) => console.log(`Request failed ${error}`))
+    });
+}
 
 
 const deleteRace = async (id) => {
@@ -124,7 +167,18 @@ const deleteRace = async (id) => {
     })
         .then((data) => {
             console.log(`Request succeeded with JSON response ${data}`);
-            getRaces();
+            wait();
+        })
+        .catch((error) => console.log(`Request failed ${error}`))
+};
+
+const deletedriver = async (id) => {
+    fetch("http://localhost:8080/driver/delete/" + id, {
+        method: 'delete',
+    })
+        .then((data) => {
+            console.log(`Request succeeded with JSON response ${data}`);
+            wait();
         })
         .catch((error) => console.log(`Request failed ${error}`))
 };

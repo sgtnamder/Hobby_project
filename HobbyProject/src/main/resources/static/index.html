@@ -36,7 +36,7 @@
             </section>
         </div>
         <div class="col-md-3">
-            <div class="modal fade" id="updateModal">
+            <div class="modal fade" id="updateModal" href="updateModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -50,6 +50,36 @@
                             <input id="UDate" name="UDate" type="text" class="form-control">
                             <label for="Time" class="form-label">Time</label>
                             <input id="UTime" name="UTime" type="text" class="form-control">
+                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="modal fade" id="addModal" href="addModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Update a Race</h3>
+                        </div>
+                        <form id="createDriverForm">
+                            <H2>Create Race</H2>
+                            <label for="Name" class="form-label">Name</label>
+                            <input id="AName" name="AName" type="text" class="form-control">
+                            <label for="TeamName" class="form-label">Team Name</label>
+                            <input id="TeamName" name="TeamName" type="text" class="form-control">
+                            <label for="Points" class="form-label">Points</label>
+                            <input id="Points" name="Points" type="number" class="form-control">
+                            <label for="DriverNum" class="form-label">Driver Number</label>
+                            <input id="DriverNum" name="DriverNum" type="number" class="form-control">
+                            <label for="DTime" class="form-label">Time</label>
+                            <input id="DTime" name="DTime" type="text" class="form-control">
+                            <label for="driverNum" class="form-label">Driver Number</label>
+                            <input id="driverNum" name="driverNum" type="number" class="form-control">
+                            <label for="Position" class="form-label">Position</label>
+                            <input id="Position" name="Position" type="number" class="form-control">
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>

@@ -15,6 +15,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.hobby.domain.Driver;
 import com.qa.hobby.domain.Race;
+import com.qa.hobby.dto.RaceDTO;
 import com.qa.hobby.repo.DriverRepo;
 import com.qa.hobby.repo.RaceRepo;
 import com.qa.hobby.service.DriverService;
@@ -26,26 +27,23 @@ public class RaceServiceUnitTest {
 	
 	@Autowired
 	private RaceService service;
-	private DriverService dservice;
 	
 	
 	@MockBean
 	private RaceRepo repo;
-	private DriverRepo drepo;
+	
 	
 	@Test
 	void testAddRace(){
 		//given
-		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
-		List<Driver> drivers = new ArrayList<>();
-		drivers.add(driver);
-		Race race = new Race("Azerbaijan","06,06,2021","13.00",drivers);
+		
+		Race race = new Race("Azerbaijan","06,06,2021","13.00");
 		
 		//when
-		Mockito.when(this.drepo.save(driver)).thenReturn(driver);
+		
 		Mockito.when(this.repo.save(race)).thenReturn(race);
 		//then
-		assertThat(this.service.addRace(race)).isEqualTo(race);
+		assertThat(this.service.addRace(race)).usingRecursiveComparison().isEqualTo(race);
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(race);
 	}
@@ -55,8 +53,8 @@ public class RaceServiceUnitTest {
 		Race race = new Race("Azerbaijan","06,06,2021","13.00");
 		//when
 		Mockito.when(this.repo.save(race)).thenReturn(race);
-		//when
-		assertThat(this.service.getAllRaces()).isEqualTo(race);
+		//then
+		assertThat(this.service.getAllRaces()).usingRecursiveComparison().isEqualTo(race);
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(race);
 	}
@@ -65,14 +63,17 @@ public class RaceServiceUnitTest {
 		//given
 		Integer id = 1;
 		Race race = new Race("Azerbaijan","06,06,2021","13.00");
-		Race existing = new Race(id, null, null, null, null);
+		Race existing = new Race(id, null, null, null);
+		Race updated = new Race(id,"Azerbaijan","06,06,2021","13.00");
 		//when
-		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(existing));
-		Mockito.when(this.repo.save(race)).thenReturn(race);
-		//then
-		assertThat(this.service.updateRace(id, race)).isEqualTo(race);
 		
-		Mockito.verify(this.repo,Mockito.times(1)).save(race);
+		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(existing));
+		Mockito.when(this.repo.save(updated)).thenReturn(updated);
+		
+		//then
+		assertThat(this.service.updateRace(id, race)).usingRecursiveComparison().isEqualTo(updated);
+		
+		Mockito.verify(this.repo,Mockito.times(1)).save(updated);
 		Mockito.verify(this.repo,Mockito.times(1)).findById(id);	
 		
 	}

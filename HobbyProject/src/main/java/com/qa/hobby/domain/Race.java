@@ -51,7 +51,14 @@ public class Race {
 		this.drivers = drivers;
 	}
 	
-	
+	public Race(Integer id, String name, String date, String time) {
+		this();
+		this.id = id;
+		this.name = name;
+		this.date = date;
+		this.time = time;
+		
+	}
 
 	public Race(String name, String date, String time) {
 		this();

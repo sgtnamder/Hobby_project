@@ -48,8 +48,8 @@ public class DriverServiceUnitTest {
 		DriverDTO driverdto = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
 		//when
 		Mockito.when(this.repo.save(driver)).thenReturn(driver);
-		//when
-		assertThat(this.service.getDrivers()).isEqualTo(driverdto);
+		//then
+		assertThat(this.service.getDrivers()).usingRecursiveComparison().isEqualTo(driverdto);
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
 	}
@@ -59,13 +59,14 @@ public class DriverServiceUnitTest {
 		Integer id = 1;
 		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
 		Driver existing = new Driver(id, null, null, null, null, null, null);
+		Driver updated = new Driver(id,"S.Perez","Redbull",25,11,"2:13:36:410",1);
 		//when
 		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(existing));
-		Mockito.when(this.repo.save(driver)).thenReturn(driver);
+		Mockito.when(this.repo.save(updated)).thenReturn(updated);
 		//then
-		assertThat(this.service.updateDriver(id, driver)).isEqualTo(driver);
+		assertThat(this.service.updateDriver(id, driver)).usingRecursiveComparison().isEqualTo(updated);
 		
-		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
+		Mockito.verify(this.repo,Mockito.times(1)).save(updated);
 		Mockito.verify(this.repo,Mockito.times(1)).findById(id);	
 		
 	}

@@ -12,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.qa.hobby.domain.Driver;
+import com.qa.hobby.dto.DriverDTO;
 import com.qa.hobby.repo.DriverRepo;
 import com.qa.hobby.service.DriverService;
 
@@ -31,10 +32,12 @@ public class DriverServiceUnitTest {
 	void testAddDriver(){
 		//given
 		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
+		DriverDTO driverdto = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
 		//when
 		Mockito.when(this.repo.save(driver)).thenReturn(driver);
 		//then
-		assertThat(this.service.addDriver(driver)).isEqualTo(driver);
+		assertThat(this.service.addDriver(driver)).usingRecursiveComparison().isEqualTo(driverdto);
+		
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
 	}
@@ -42,10 +45,11 @@ public class DriverServiceUnitTest {
 	void testGetallDrivers() {
 		//given
 		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
+		DriverDTO driverdto = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
 		//when
 		Mockito.when(this.repo.save(driver)).thenReturn(driver);
 		//when
-		assertThat(this.service.getAllDrivers()).isEqualTo(driver);
+		assertThat(this.service.getDrivers()).isEqualTo(driverdto);
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
 	}

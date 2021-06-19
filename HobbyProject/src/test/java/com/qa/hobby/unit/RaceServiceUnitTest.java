@@ -51,12 +51,14 @@ public class RaceServiceUnitTest {
 	void testGetallRaces() {
 		//given
 		Race race = new Race("Azerbaijan","06,06,2021","13.00");
+		List<Race> races = new ArrayList<>();
+		races.add(race);
 		//when
-		Mockito.when(this.repo.save(race)).thenReturn(race);
+		Mockito.when(this.repo.findAll()).thenReturn(races);
 		//then
-		assertThat(this.service.getAllRaces()).usingRecursiveComparison().isEqualTo(race);
+		assertThat(this.service.getAllRaces()).usingRecursiveComparison().isEqualTo(races);
 		
-		Mockito.verify(this.repo,Mockito.times(1)).save(race);
+		Mockito.verify(this.repo,Mockito.times(1)).findAll();
 	}
 	@Test
 	void testUpdateRace() {

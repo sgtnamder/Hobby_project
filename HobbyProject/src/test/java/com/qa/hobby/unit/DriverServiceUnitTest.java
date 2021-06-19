@@ -2,6 +2,8 @@ package com.qa.hobby.unit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +17,7 @@ import com.qa.hobby.domain.Driver;
 import com.qa.hobby.dto.DriverDTO;
 import com.qa.hobby.repo.DriverRepo;
 import com.qa.hobby.service.DriverService;
+
 
 
 @SpringBootTest
@@ -32,11 +35,11 @@ public class DriverServiceUnitTest {
 	void testAddDriver(){
 		//given
 		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
-		DriverDTO driverdto = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
+		DriverDTO driverDTO = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
 		//when
 		Mockito.when(this.repo.save(driver)).thenReturn(driver);
 		//then
-		assertThat(this.service.addDriver(driver)).usingRecursiveComparison().isEqualTo(driverdto);
+		assertThat(this.service.addDriver(driver)).usingRecursiveComparison().isEqualTo(driverDTO);
 		
 		
 		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
@@ -45,13 +48,18 @@ public class DriverServiceUnitTest {
 	void testGetallDrivers() {
 		//given
 		Driver driver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
-		DriverDTO driverdto = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
+		List<Driver> drivers = new ArrayList<>();
+		drivers.add(driver);
+		DriverDTO driverDTO = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
+		List<DriverDTO> driversDTO = new ArrayList<>();
+		driversDTO.add(driverDTO);
 		//when
-		Mockito.when(this.repo.save(driver)).thenReturn(driver);
+		Mockito.when(this.repo.findAll()).thenReturn(drivers);
 		//then
-		assertThat(this.service.getDrivers()).usingRecursiveComparison().isEqualTo(driverdto);
+		assertThat(this.service.getDrivers()).usingRecursiveComparison().isEqualTo(driversDTO);
 		
-		Mockito.verify(this.repo,Mockito.times(1)).save(driver);
+		Mockito.verify(this.repo,Mockito.times(1)).findAll();
+		
 	}
 	@Test
 	void testUpdateDriver() {

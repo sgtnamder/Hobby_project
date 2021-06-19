@@ -1,1 +1,1 @@
-insert into race (`id`,`name`,`date`,`time`) values (null, "Azerbaijan","06,06,2021","13.00");
+insert into race (`id`,`name`,`date`,`time`) values (null, 'Azerbaijan','06,06,2021','13.00');

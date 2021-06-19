@@ -21,8 +21,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.hobby.domain.Driver;
-import com.qa.hobby.dto.DriverDTO;
+import com.qa.hobby.domain.Race;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // prevents port conflicts
@@ -36,7 +35,57 @@ public class RaceIntergrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	@Tes
+	@Test
+	void testRaceCreate() throws Exception{
+		Race testRace = new Race("Azerbaijan","06,06,2021","13.00");
+		String testRaceJson = this.mapper.writeValueAsString(testRace);
+		Race savedRace = new Race("Azerbaijan","06,06,2021","13.00");
+		savedRace.setId(0);
+		String savedRaceJson = this.mapper.writeValueAsString(savedRace);
+		
+		RequestBuilder mockRequest = post("/race/add").content(testRaceJson).contentType(MediaType.APPLICATION_JSON);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkbody = content().json(savedRaceJson);
+		
+		this.mvc.perform(mockRequest).andExpect(checkStatus).andExpect(checkbody);
+	}
+	
+	@Test
+	void testRaceUpdate() throws Exception{
+		Integer id = 1;
+		Race testRace = new Race("Azerbaijan","06,06,2021","13.00");
+		String testRaceJson = this.mapper.writeValueAsString(testRace);
+		Race updatedRace = new Race("Azerbaijan","06,06,2021","13.00");
+		updatedRace.setId(id);
+		String updatedRaceJson = this.mapper.writeValueAsString(updatedRace);
+		
+		RequestBuilder mockRequest = put("/race/update/"+id).content(testRaceJson).contentType(MediaType.APPLICATION_JSON);
+		ResultMatcher checkStatus = status().isOk();
+		ResultMatcher checkbody = content().json(updatedRaceJson);
+		
+		this.mvc.perform(mockRequest).andExpect(checkStatus).andExpect(checkbody);
+		
+	}
+	@Test
+	void testDelteteDriver() throws Exception{
+		Integer id = 1;
+		
+		RequestBuilder mockRequest = delete("/race/delete/"+id);
+		ResultMatcher checkStatus = status().isOk();
+		
+		this.mvc.perform(mockRequest).andExpect(checkStatus);
+					
+	}
+	@Test
+	void getDriversTest() throws Exception{
+		Race testRace = new Race("Azerbaijan","06,06,2021","13.00");
+		testRace.setId(1);
+		List<Race> races = List.of(testRace);
+		String testRaceJson = this.mapper.writeValueAsString(races);
+		
+		this.mvc.perform(get("/race/")).andExpect(status().isOk()).andExpect(content().json(testRaceJson));
+		
+	}
 	
 	
 	

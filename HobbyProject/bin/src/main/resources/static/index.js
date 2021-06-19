@@ -35,53 +35,16 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
     listGroup.className = "list-group";
     cardBody.appendChild(listGroup);
 
-    let Raceid = id;
+
     let renderDriver = ({ id, name, teamName, points, driverNum, time, position, }) => {
         let driverList = document.createElement("button");
         driverList.type = "button";
         driverList.innerText = `Name: ${name}, Team Name: ${teamName}, Points: ${points}, Driver Num: ${driverNum}, Time: ${time}, Position ${position}`;
         driverList.className = "list-group-item list-group-item-action"
-        driverList.setAttribute('data-bs-toggle', 'modal');
-        driverList.setAttribute('data-bs-target', '#updateDriverModal');
         driverList.addEventListener("click", function () {
-            document.getElementById("updateDriverForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                let data = {
-                    name: document.getElementById("UDName").value,
-                    teamName: document.getElementById("UTeamName").value,
-                    points: document.getElementById("UPoints").value,
-                    driverNum: document.getElementById("UDriverNum").value,
-                    time: document.getElementById("UDTime").value,
-                    position: document.getElementById("UPosition").value,
-
-                }
-
-                fetch("http://localhost:8080/driver/update/" + id, {
-                    method: 'PUT',
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                })
-                    .then(console.log(JSON.stringify(data)))
-                    .then(wait())
-                    .then(res => { res.json() })
-                    .then((data) => console.log(`Request succeeded with JSON response ${data}`))
-                    .catch((error) => console.log(`Request failed ${error}`))
-            });
-
-        })
-
-        let deleteDriverButton = document.createElement("button");
-        deleteDriverButton.innerText = "Delete";
-        deleteDriverButton.className = "card-button";
-        deleteDriverButton.addEventListener("click", function () {
             deletedriver(id);
-        });
-
+        })
         listGroup.appendChild(driverList);
-        listGroup.appendChild(deleteDriverButton);
 
     }
     drivers.forEach(drivers => renderDriver(drivers));
@@ -99,7 +62,7 @@ let renderRace = ({ id, name, date, time, drivers, }) => {
     cardFooter.appendChild(deleteButton);
 
     let updateButton = document.createElement("button");
-    updateButton.innerText = "Update Race";
+    updateButton.innerText = "update race";
     updateButton.className = "card-button";
     updateButton.setAttribute('data-bs-toggle', 'modal');
     updateButton.setAttribute('data-bs-target', '#updateModal');

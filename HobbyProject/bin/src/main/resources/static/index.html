@@ -36,7 +36,7 @@
             </section>
         </div>
         <div class="col-md-3">
-            <div class="modal fade" id="updateModal">
+            <div class="modal fade" id="updateModal" href="updateModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -58,14 +58,14 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="modal fade" id="addModal">
+            <div class="modal fade" id="addModal" href="addModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3>Create a Driver</h3>
+                            <h3>Update a Race</h3>
                         </div>
                         <form id="createDriverForm">
-                            <H2>Create Driver</H2>
+                            <H2>Create Race</H2>
                             <label for="Name" class="form-label">Name</label>
                             <input id="AName" name="AName" type="text" class="form-control">
                             <label for="TeamName" class="form-label">Team Name</label>
@@ -80,36 +80,6 @@
                             <input id="driverNum" name="driverNum" type="number" class="form-control">
                             <label for="Position" class="form-label">Position</label>
                             <input id="Position" name="Position" type="number" class="form-control">
-                            <button type="reset" class="btn btn-primary">Reset</button>
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="modal fade" id="updateDriverModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>Update a Driver</h3>
-                        </div>
-                        <form id="updateDriverForm">
-                            <H2>Update Driver</H2>
-                            <label for="Name" class="form-label">Name</label>
-                            <input id="UDName" name="UName" type="text" class="form-control">
-                            <label for="UTeamName" class="form-label">Team Name</label>
-                            <input id="UTeamName" name="UTeamName" type="text" class="form-control">
-                            <label for="UPoints" class="form-label">Points</label>
-                            <input id="UPoints" name="UPoints" type="number" class="form-control">
-                            <label for="UDriverNum" class="form-label">Driver Number</label>
-                            <input id="UDriverNum" name="UDriverNum" type="number" class="form-control">
-                            <label for="DTime" class="form-label">Time</label>
-                            <input id="UDTime" name="UDTime" type="text" class="form-control">
-                            <label for="UdriverNum" class="form-label">Driver Number</label>
-                            <input id="UdriverNum" name="UdriverNum" type="number" class="form-control">
-                            <label for="UPosition" class="form-label">Position</label>
-                            <input id="UPosition" name="UPosition" type="number" class="form-control">
                             <button type="reset" class="btn btn-primary">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>

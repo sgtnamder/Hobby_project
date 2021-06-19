@@ -37,7 +37,7 @@ public class DriverIntegrationTest {
 	private ObjectMapper mapper;
 	
 	@Test
-	void testDriveCreate() throws Exception {
+	void testDriverCreate() throws Exception {
 	Driver testDriver = new Driver("S.Perez","Redbull",25,11,"2:13:36:410",1);
 	String testDriverJson = this.mapper.writeValueAsString(testDriver);
 	DriverDTO savedDriver = new DriverDTO("S.Perez","Redbull",25,11,"2:13:36:410",1);
@@ -75,9 +75,7 @@ public class DriverIntegrationTest {
 		ResultMatcher checkStatus = status().isOk();
 		
 		this.mvc.perform(mockRequest).andExpect(checkStatus);
-		
-		
-		
+					
 	}
 	
 	@Test

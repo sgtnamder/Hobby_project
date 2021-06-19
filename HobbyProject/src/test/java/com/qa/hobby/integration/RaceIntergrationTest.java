@@ -36,7 +36,7 @@ public class RaceIntergrationTest {
 	@Autowired
 	private ObjectMapper mapper;
 	
-	@Test
+	@Tes
 	
 	
 	

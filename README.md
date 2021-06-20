@@ -1,5 +1,5 @@
 Coverage: 80%
-Jira link: https://rredman.atlassian.net/secure/RapidBoard.jspa?rapidView=3&projectKey=IMSP&selectedIssue=IMSP-9&atlOrigin=eyJpIjoiMTQ2ZGI3N2Q0NDI5NDA3ZDg4Y2IwMjkxYTg4N2MzYmIiLCJwIjoiaiJ9
+Jira link: https://rredman.atlassian.net/jira/software/projects/HP/boards/6
 Git repo : https://github.com/sgtnamder/sgtnamder_assessment
 Hobby project
 

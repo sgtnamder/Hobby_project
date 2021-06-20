@@ -13,12 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.qa.hobby.domain.Driver;
 import com.qa.hobby.domain.Race;
-import com.qa.hobby.dto.RaceDTO;
-import com.qa.hobby.repo.DriverRepo;
 import com.qa.hobby.repo.RaceRepo;
-import com.qa.hobby.service.DriverService;
 import com.qa.hobby.service.RaceService;
 
 @SpringBootTest

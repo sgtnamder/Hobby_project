@@ -17,32 +17,32 @@ import com.qa.hobby.dto.RaceDTO;
 import com.qa.hobby.service.RaceService;
 
 @RestController
-@RequestMapping("/race")
+@RequestMapping("/race")// creates an address for modifying races
 public class RaceController {
 
 	private RaceService service;
 
-	@Autowired
+	@Autowired // create the a new instance if service
 	public RaceController(RaceService service) {
 		super();
 		this.service = service;
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/add") // creates and address to add a races
 	public RaceDTO addRace(@RequestBody Race race) {
 		return this.service.addRace(race);
 	}
 
-	@GetMapping("/")
+	@GetMapping("/")// creates and address to get all races
 	public List<RaceDTO> getAllRaces(){
 		return this.service.getAllRaces();
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/update/{id}")// creates and address to update races by id
 	public RaceDTO updateRace(@RequestBody Race race, @PathVariable Integer id) {
 		return this.service.updateRace(id, race);
 	}
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete/{id}")// creates and address to delete races by id
 	public Boolean deleteRace(@PathVariable Integer id) {
 		return this.service.deleteRace(id);
 	}

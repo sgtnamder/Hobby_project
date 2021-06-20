@@ -17,32 +17,32 @@ import com.qa.hobby.dto.DriverDTO;
 import com.qa.hobby.service.DriverService;
 
 @RestController
-@RequestMapping("/driver")
+@RequestMapping("/driver")// create address to change drivers
 public class DriverController {
 
 	private DriverService service;
 
-	@Autowired
+	@Autowired// create the a new instance if service
 	public DriverController(DriverService service) {
 		super();
 		this.service = service;
 	}
 
-	@PostMapping("/add")
+	@PostMapping("/add")// creates the address to add a driver
 	public DriverDTO addDriver(@RequestBody Driver driver) {
 		return this.service.addDriver(driver);
 	}
 
-	@GetMapping("/")
+	@GetMapping("/")// creates an address to get all drivers
 	public List<DriverDTO> getAllDrivers() {
 		return this.service.getDrivers();
 	}
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/update/{id}")// creates an address to update a driver by id
 	public DriverDTO updateDriver(@RequestBody Driver driver, @PathVariable("id") Integer id ){
 		return this.service.updateDriver(id, driver);
 	}
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete/{id}")// creates an address to delete drivers by id 
 	public Boolean deleteDriver(@PathVariable Integer id) {
 		return this.service.deleteDriver(id);
 	}

@@ -9,7 +9,7 @@ public class DriverMapper {
 	public DriverMapper(){
 	}
 	
-	
+	// maps drivers to a dto to send back to the front-end
 	public DriverDTO mapTo(Driver driver) {
 		DriverDTO dto = new DriverDTO();
 		

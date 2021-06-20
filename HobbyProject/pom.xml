@@ -15,7 +15,7 @@
 	<name>HobbyProject</name>
 	<description>the Hobby project for storing and showing race and driver results</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>14</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

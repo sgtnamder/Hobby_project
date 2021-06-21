@@ -14,6 +14,7 @@ ensure instillation of SQL
 To Run this project you will need 
 -- java vesrion 8/1.8 to 14 
 -- MYSQL or equivelent SQL server
+--Google Chrome(should work with other browsers)
 
 
 What things you need to install the software and how to install them
@@ -55,40 +56,16 @@ installing java
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+Due to this being a front-end programe type it cannot be run throught the .jar 
 
-1.open the command line cd into the file location the java file e.g.C:\Users\richa\Desktop\projects\IMS project\sgtnamder_assessment
-and runn the command "mvn clean package"
+Instead open the project within an eclipeIDE.
 
-2. setup the data base : using the schema SQL text file in sgtnamder_assessment\target\classes you should run these commands in your chossen SQL enviroment;
-this should create a schema in data base called IMS with tables for customers,orders,items and orderline.
+Ensure that you have gooten SpringBoot from the eclipes store located in the help tab and called eclipe marketplace
 
-3.(optional) add data to the data base: Using the data SQL text file in sgtnamder_assessment\target\classes you should run these commands in your chossen SQL enviroment;
-this should populate the tables with some test data which can be used or delete later.
+From here you can run a live version through the Boot dashboard, simply click on local, then the project you want to run e.g. HobbyProject and then at the top click on start/restart button
 
-4. Address, username and password for SQL: using the DB properties text file edit the infomation in side to match the location of you SQL sever/local with/ims after and change the name of the Username and password to match the servers
-e.g.
-db.url=jdbc:mysql://localhost:3306/ims
-db.user=root
-db.password=root
+Now open your internet browser and type http://localhost:8080/. you should see a webpage for the application
 
-5. Run the jar file: now you can open the command prompt
-serch CMD in windows search
-go to the location of your jar file in sgtnamder_assessment\target using cd command
-e.g. cd C:\Users\richa\Desktop\projects\IMS project\sgtnamder_assessment\target
-now in the cmd line type java -jar "name of file.jar"
-e.g. java -jar ims-0.0.1.jar
-
-6. (alternative) create file to run the jar file:
-create a Text file in the location of your java called "fielname.bat"
-open this file in text editor and enter
-"start java -jar JarFile.jar"
-e.g. start java -jar ims-0.0.1.jar
-save and run the file will start the java aplication
-
-
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
@@ -188,7 +165,7 @@ I used [Git](https://github.com) for versioning
 
 ## Authors
 
-* **Richard Redman** - *Orders and Items* -[sgtnamder](https://github.com/sgtnamder)
+* **Richard Redman** -[sgtnamder](https://github.com/sgtnamder)
 
 ## License
 Project not lincesed 

@@ -1,4 +1,4 @@
-Coverage: 80%
+Coverage: 80% ish
 Jira link: https://rredman.atlassian.net/jira/software/projects/HP/boards/6
 Git repo : https://github.com/sgtnamder/sgtnamder_assessment
 Hobby project
